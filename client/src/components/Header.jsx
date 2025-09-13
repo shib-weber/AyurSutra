@@ -72,8 +72,8 @@
 
         {/* Right Side */}
         <div className="flex items-center gap-4">
-            <button className="btn-outline outline-1 outline-emerald-900 rounded-full px-5 h-10 hover:scale-105 hover:bg-emerald-900 hover:text-amber-50 transform transition" >Login</button>
-            <button className="btn-filled bg-emerald-900 text-amber-50 rounded-full px-5 h-10 hover:scale-105 hover:bg-amber-50 hover:outline-1 outline-emerald-900 hover:text-emerald-900 transform transition">Register</button>
+            <button className="btn-outline outline-1 outline-[#1a544a] rounded-full px-5 h-10 hover:scale-105 hover:bg-[#1a544a] hover:text-amber-50 transform transition" >Login</button>
+            <button className="btn-filled bg-[#1a544a] text-amber-50 rounded-full px-5 h-10 hover:scale-105 hover:bg-amber-50 hover:outline-1 outline-[#1a544a] hover:text-[#1a544a] transform transition">Register</button>
         </div>
         </header>
     );
