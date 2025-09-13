@@ -19,13 +19,21 @@
             </div>
             <h2 className="text-2xl font-bold">AyurSutra</h2>
             </a>
+<nav className="hidden md:flex items-center gap-4 font-medium">
+  <a className="px-3 py-2 rounded-md hover:text-[var(--primary-green)] hover:bg-emerald-100 transition-colors" href="/dashboard">
+    Dashboard
+  </a>
+  <a className="px-3 py-2 rounded-md hover:text-[var(--primary-green)] hover:bg-emerald-100 transition-colors" href="#">
+    Patients
+  </a>
+  <a className="px-3 py-2 rounded-md hover:text-[var(--primary-green)] hover:bg-emerald-100 transition-colors" href="#">
+    Treatments
+  </a>
+  <a className="px-3 py-2 rounded-md hover:text-[var(--primary-green)] hover:bg-emerald-100 transition-colors" href="#">
+    Billing
+  </a>
+</nav>
 
-            <nav className="hidden md:flex items-center gap-6 font-medium">
-            <a className="hover:text-[var(--primary-green)]" href="#">Dashboard</a>
-            <a className="hover:text-[var(--primary-green)]" href="#">Patients</a>
-            <a className="hover:text-[var(--primary-green)]" href="#">Treatments</a>
-            <a className="hover:text-[var(--primary-green)]" href="#">Billing</a>
-            </nav>
 
             <button className="md:hidden">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -64,8 +72,8 @@
 
         {/* Right Side */}
         <div className="flex items-center gap-4">
-            <button className="btn-outline outline-1 outline-emerald-900 rounded-full px-5 h-10">Login</button>
-            <button className="btn-filled bg-emerald-900 text-amber-50 rounded-full px-5 h-10">Register</button>
+            <button className="btn-outline outline-1 outline-emerald-900 rounded-full px-5 h-10 hover:scale-105 hover:bg-emerald-900 hover:text-amber-50 transform transition" >Login</button>
+            <button className="btn-filled bg-emerald-900 text-amber-50 rounded-full px-5 h-10 hover:scale-105 hover:bg-amber-50 hover:outline-1 outline-emerald-900 hover:text-emerald-900 transform transition">Register</button>
         </div>
         </header>
     );
