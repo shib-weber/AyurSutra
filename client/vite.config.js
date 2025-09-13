@@ -10,5 +10,5 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  base: '/', 
+  base: '/AyurSutra/',   // 👈 repo name here, case-sensitive
 });
