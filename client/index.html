@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/src.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SRC</title>
+    
+    <script>
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      window.scrollTo(0, 0);
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script>
+  window.addEventListener("DOMContentLoaded", () => {
+    if (window.location.hash) {
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+      window.scrollTo(0, 0);
+    }
+  });
+</script>
+  </body>
+</html>
