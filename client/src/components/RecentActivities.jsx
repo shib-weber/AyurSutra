@@ -1,9 +1,21 @@
     import React from "react";
 
     const activities = [
-    { icon: "person_add", title: "New Patient Registered", desc: "Sophia Clark registered for Panchakarma", color: "bg-[var(--c-highlight)]" },
-    { icon: "check_circle", title: "Therapy Completed", desc: "Ethan Davis completed Abhyanga therapy", color: "bg-[var(--c-success)]" },
-    { icon: "calendar_add_on", title: "Appointment Scheduled", desc: "Ava Foster scheduled an appointment for Shirodhara", color: "bg-[var(--c-action-primary)]" },
+    { icon: (<svg xmlns="http://www.w3.org/2000/svg" fill="#E9F0EB" viewBox="0 0 24 24" width="24" height="24">
+  <path d="M15 14c2.67 0 8 1.34 8 4v2h-8v-2c0-1.1-.9-2-2-2H5v-2c0-2.66 5.33-4 8-4z"/>
+  <circle cx="9" cy="8" r="4"/>
+  <path d="M20 8h-2V6h-2v2h-2v2h2v2h2v-2h2V8z"/>
+</svg>
+), title: "New Patient Registered", desc: "Sophia Clark registered for Panchakarma", color: "bg-[var(--c-highlight)]" },
+    { icon: (<svg xmlns="http://www.w3.org/2000/svg" fill="#34D399" viewBox="0 0 24 24" width="24" height="24">
+  <circle cx="12" cy="12" r="10" fill="#34D399"/>
+  <path fill="#fff" d="M10 14.5l-3-3 1.41-1.42L10 11.67l5.59-5.59L17 7.5l-7 7z"/>
+</svg>
+), title: "Therapy Completed", desc: "Ethan Davis completed Abhyanga therapy", color: "bg-[var(--c-success)]" },
+    { icon: (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#E9F0EB" width="24" height="24">
+  <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+</svg>
+), title: "Appointment Scheduled", desc: "Ava Foster scheduled an appointment for Shirodhara", color: "bg-[var(--c-action-primary)]" },
     ];
 
     const RecentActivities = () => {
