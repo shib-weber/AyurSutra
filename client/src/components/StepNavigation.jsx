@@ -2,7 +2,7 @@
 
     const StepNavigation = ({ step, setStep, totalSteps, onFinish }) => {
     return (
-        <div className="flex justify-between items-center mt-8">
+        <div className="flex absolute bottom-[5%] justify-between w-[70%] items-center ">
         <button
             disabled={step === 0}
             onClick={() => setStep(step - 1)}
