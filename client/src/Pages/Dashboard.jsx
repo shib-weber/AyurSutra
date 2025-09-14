@@ -18,7 +18,7 @@
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     <StatsCard title="Total Patients" value="245" />
                     <StatsCard title="Active Therapies" value="12" />
-                    <StatsCard title="Upcoming Appointments" value="3" />
+                    <StatsCard title="Upcoming Appointments" value="6" />
                 </div>
                 <div className="flex flex-col gap-4">
                     <h2 className="text-2xl font-bold text-[#1a544a]">Upcoming Appointments</h2>
