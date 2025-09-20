@@ -19,13 +19,13 @@ const PatientDetails = () => {
           <span className="font-medium text-[var(--foreground)]">
             Current Therapy:
           </span>{" "}
-          <span className="text-[var(--muted-foreground)]">Abhyanga</span>
+          <span className="text-[var(--muted-foreground)]">Physiotherapy</span>
         </div>
         <div>
           <span className="font-medium text-[var(--foreground)]">
             Attending Doctor:
           </span>{" "}
-          <span className="text-[var(--muted-foreground)]">Dr. Patel</span>
+          <span className="text-[var(--muted-foreground)]">Dr. Anjali Mehta</span>
         </div>
       </div>
 
@@ -35,12 +35,12 @@ const PatientDetails = () => {
         </h4>
         <div className="w-full bg-[#d0ddf7] rounded-full h-2.5">
           <div
-            className="bg-[#1a544a] h-2.5 rounded-full"
-            style={{ width: "75%" }}
+            className="bg-[#752431] h-2.5 rounded-full"
+            style={{ width: "15%" }}
           ></div>
         </div>
         <p className="text-sm text-right text-[var(--muted-foreground)] mt-1">
-          75% Improved
+          25% Improved
         </p>
       </div>
     </div>

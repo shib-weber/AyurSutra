@@ -13,9 +13,9 @@ const PatientProfile = () => {
         ></div>
         <div>
           <h2 className="text-2xl font-bold text-[var(--foreground)]">
-            Anya Sharma
+            Nandini Singh
           </h2>
-          <p className="text-[var(--muted-foreground)]">Age: 32, Female</p>
+          <p className="text-[var(--muted-foreground)]">Age: 20, Female</p>
           <p className="text-sm text-[var(--muted-foreground)]">
             Patient ID: PAT-123456
           </p>

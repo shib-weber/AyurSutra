@@ -18,9 +18,9 @@ const NextSession = () => {
           </span>
         </div>
         <div>
-          <p className="font-bold text-[var(--foreground)]">Abhyanga</p>
+          <p className="font-bold text-[var(--foreground)]">Physiotherapy</p>
           <p className="text-sm text-[var(--muted-foreground)]">
-            July 15, 2024, 10:00 AM
+            20.09.2025
           </p>
         </div>
       </div>
@@ -28,9 +28,9 @@ const NextSession = () => {
       <p className="text-sm text-[var(--muted-foreground)] mb-2">Starts in:</p>
       <div className="flex gap-4 text-center">
         {[
-          { val: "02", label: "Hours" },
+          { val: "06", label: "Days" },
+          { val: "2", label: "Hours" },
           { val: "30", label: "Minutes" },
-          { val: "15", label: "Seconds" },
         ].map((t, i) => (
           <div
             key={i}

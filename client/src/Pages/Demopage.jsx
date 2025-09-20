@@ -9,7 +9,7 @@ import ReportsProgress from "../components/ReportsProgress";
 import NextSession from "../components/NextSession";
 import Notifications from "../components/Notifications";
 
-const PatientDashboard = () => {
+const DemoPage = () => {
   const navigate = useNavigate();
 
   const handleBookTherapy = () => {
@@ -28,7 +28,7 @@ const PatientDashboard = () => {
                 <div className="flex justify-between items-center mb-8">
                   <div>
                     <h1 className="text-3xl text-emerald-900 font-bold mb-2">
-                      Welcome, Nandini!
+                      Welcome, Anya!
                     </h1>
                     <p className="text-[var(--muted-foreground)]">
                       Here's a summary of your health and therapy schedule.
@@ -60,4 +60,4 @@ const PatientDashboard = () => {
   );
 };
 
-export default PatientDashboard;
+export default DemoPage;
