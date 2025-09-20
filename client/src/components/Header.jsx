@@ -1,82 +1,46 @@
-    import React from "react";
+export default function Header() {
+  return (
+    <header className="sticky top-0 z-50 flex items-center justify-between border-b border-primary/20 bg-background-light/80 px-10 py-3 backdrop-blur-sm dark:bg-background-dark/80">
+      <div className="flex items-center gap-3 text-primary">
+        <svg className="h-8 w-8" fill="none" viewBox="0 0 48 48">
+          <path
+            d="M24 .757L47.243 24 24 47.243.757 24 24 .757zM21 35.757V12.243L9.243 24 21 35.757z"
+            fill="currentColor"
+          />
+        </svg>
+        <h2 className="text-2xl font-bold tracking-tight">AyurSutra</h2>
+      </div>
 
-    const Header = () => {
-    return (
-        <header className="flex items-center justify-between border-b border-[var(--border-color)] px-10 py-4 text-emerald-900 bg-white/80 backdrop-blur-sm sticky top-0 z-20">
-        {/* Logo + Nav */}
-        <div className="flex items-center gap-10">
-            <a className="flex items-center gap-3 text-[var(--text-dark)]" href="#">
-            <div className="size-8 text-[var(--primary-green)]">
-                {/* Logo SVG */}
-                <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    clipRule="evenodd"
-                    d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z"
-                    fill="currentColor"
-                    fillRule="evenodd"
-                />
-                </svg>
-            </div>
-            <h2 className="text-2xl font-bold">AyurSutra</h2>
-            </a>
-<nav className="hidden md:flex items-center gap-4 font-medium">
-  <a className="px-3 py-2 rounded-md hover:text-[var(--primary-green)] hover:bg-emerald-100 transition-colors" href="/dashboard">
-    Dashboard
-  </a>
-  <a className="px-3 py-2 rounded-md hover:text-[var(--primary-green)] hover:bg-emerald-100 transition-colors" href="#">
-    Patients
-  </a>
-  <a className="px-3 py-2 rounded-md hover:text-[var(--primary-green)] hover:bg-emerald-100 transition-colors" href="#">
-    Treatments
-  </a>
-  <a className="px-3 py-2 rounded-md hover:text-[var(--primary-green)] hover:bg-emerald-100 transition-colors" href="#">
-    Billing
-  </a>
-</nav>
+      <nav className="hidden md:flex gap-8">
+        {["Home", "About", "Therapies", "Blog", "Contact"].map((item) => (
+          <a
+            key={item}
+            href="#"
+            className="text-sm font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary"
+          >
+            {item}
+          </a>
+        ))}
+      </nav>
 
-
-            <button className="md:hidden">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path d="M4 6h16M4 12h16M4 18h16" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            </button>
+      <div className="flex items-center gap-4">
+        <div className="relative hidden lg:block">
+          <input
+            type="text"
+            placeholder="Search..."
+            className="h-10 w-64 rounded-lg border border-gray-300 bg-background-light pl-10 pr-4 text-sm text-gray-700 focus:border-primary focus:outline-none dark:border-gray-600 dark:bg-background-dark dark:text-gray-300"
+          />
+          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+            search
+          </span>
         </div>
-
-        {/* Search Bar */}
-<div className="hidden md:flex items-center w-[50%] mx-6 relative">
-  {/* Magnifying Glass Icon */}
-  <span className="absolute left-4 text-gray-400">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-5 h-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-        d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z"
-      />
-    </svg>
-  </span>
-
-  {/* Input */}
-  <input
-    type="text"
-    placeholder="Search for therapy, doctor..."
-    className="pl-12 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-emerald-700 w-full"
-  />
-</div>
-
-        {/* Right Side */}
-        <div className="flex items-center gap-4">
-            <button className="btn-outline outline-1 outline-[#1a544a] rounded-full px-5 h-10 hover:scale-105 hover:bg-[#1a544a] hover:text-amber-50 transform transition" >Login</button>
-            <button className="btn-filled bg-[#1a544a] text-amber-50 rounded-full px-5 h-10 hover:scale-105 hover:bg-amber-50 hover:outline-1 outline-[#1a544a] hover:text-[#1a544a] transform transition">Register</button>
-        </div>
-        </header>
-    );
-    };
-
-    export default Header;
+        <button className="h-10 min-w-[84px] rounded-lg border border-primary px-4 text-sm font-bold text-primary hover:bg-primary hover:text-white">
+          Login
+        </button>
+        <button className="h-10 min-w-[84px] rounded-lg bg-primary px-4 text-sm font-bold text-white hover:opacity-90">
+          Signup
+        </button>
+      </div>
+    </header>
+  );
+}

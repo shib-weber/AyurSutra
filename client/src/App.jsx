@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./Pages/LandingPage";
-import PatientRegistrationPage from "./Pages/PatientRegistrationPage";
+import PatientLoginPage from "./Pages/PatientLoginPage";
 import Dashboard from "./Pages/Dashboard"
 import PatientDashboard from "./Pages/PatientDashboard";
-import DemoPage from "./Pages/Demopage";
+import ProfileUpdate from "./components/ProfileUpdate";
 import AppointmentBooking from "./Pages/Appointment";
 import AppointmentSuccess from "./Pages/AppointmentSuccess";
 
@@ -13,10 +13,10 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/register" element={<PatientRegistrationPage/>} />
+        <Route path="/register" element={<PatientLoginPage/>} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/patient_dashboard" element={<PatientDashboard />} />
-        <Route path="/demo" element={<DemoPage />} />
+        <Route path="/profile" element={<ProfileUpdate />} />
         <Route path="/appointment" element={<AppointmentBooking/>} />
         <Route path="/appointment-success" element={<AppointmentSuccess/>} />
       </Routes>

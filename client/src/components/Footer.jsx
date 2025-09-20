@@ -1,18 +1,22 @@
-    import React from "react";
-
-    const Footer = () => {
-    return (
-        <footer className="bg-[var(--light-bg)] border-t border-gray-200">
-        <div className="max-w-7xl mx-auto py-8 px-4 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-sm text-[#666666]">© 2024 AyurSutra. All Rights Reserved.</p>
-            <nav className="flex gap-6 text-sm text-[#666666]">
-            <a className="hover:text-[var(--primary-green)]" href="#">Privacy Policy</a>
-            <a className="hover:text-[var(--primary-green)]" href="#">Terms of Service</a>
-            <a className="hover:text-[var(--primary-green)]" href="#">Contact Us</a>
-            </nav>
-        </div>
-        </footer>
-    );
-    };
-
-    export default Footer;
+export default function Footer() {
+  return (
+    <footer className="bg-primary/10 dark:bg-primary/20 py-10 mt-20">
+      <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
+        <p className="text-gray-600 dark:text-gray-300">
+          © {new Date().getFullYear()} AyurSutra. All rights reserved.
+        </p>
+        <nav className="flex gap-6">
+          {["Privacy Policy", "Terms of Service", "Contact"].map((link) => (
+            <a
+              key={link}
+              href="#"
+              className="text-gray-600 dark:text-gray-300 hover:text-primary"
+            >
+              {link}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </footer>
+  );
+}
