@@ -1,13 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LandingPage from "./Pages/LandingPage";
-import PatientLoginPage from "./Pages/PatientLoginPage";
+import LandingPage from "./Pages/general/LandingPage";
+import PatientLoginPage from "./Pages/patient/PatientLoginPage";
 import Dashboard from "./Pages/Dashboard"
-import PatientDashboard from "./Pages/PatientDashboard";
+import PatientDashboard from "./Pages/patient/PatientDashboard";
 import ProfileUpdate from "./components/ProfileUpdate";
-import AppointmentBooking from "./Pages/Appointment";
-import AppointmentSuccess from "./Pages/AppointmentSuccess";
-
+import AppointmentBooking from "./Pages/patient/Appointment";
+import AppointmentSuccess from "./Pages/patient/AppointmentSuccess";
 const App = () => {
   return (
     <Router>

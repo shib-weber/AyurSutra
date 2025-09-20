@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import PatientHeader from "../components/PatientHeader";
-import Sidebar from "../components/Sidebar";
+import PatientHeader from "../../components/PatientHeader";
+import Sidebar from "../../components/Sidebar";
 
 const AppointmentSuccess = () => {
   const navigate = useNavigate();

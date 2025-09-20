@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../components/Sidebar";
-import Header from "../components/PatientHeader";
-import PatientProfile from "../components/PatientProfile";
-import TherapySchedule from "../components/TherapySchedule";
-import ReportsProgress from "../components/ReportsProgress";
-import Notifications from "../components/Notifications";
-import UpcomingAppointments from "../components/UpcomingAppointments";
+import Sidebar from "../../components/Sidebar";
+import Header from "../../components/PatientHeader";
+import PatientProfile from "../../components/PatientProfile";
+import TherapySchedule from "../../components/TherapySchedule";
+import ReportsProgress from "../../components/ReportsProgress";
+import Notifications from "../../components/Notifications";
+import UpcomingAppointments from "../../components/UpcomingAppointments";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 

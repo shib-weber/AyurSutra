@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import PatientHeader from "../components/PatientHeader";
-import Sidebar from "../components/Sidebar";
+import PatientHeader from "../../components/PatientHeader";
+import Sidebar from "../../components/Sidebar";
 
 const doctorsList = [
   { id: 1, name: "Dr. Anjali Mehta", specialty: "Physiotherapy" },
