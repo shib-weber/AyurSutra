@@ -1,4 +1,6 @@
+import { useNavigate } from "react-router-dom";
 export default function Hero() {
+  const navigate = useNavigate();
   return (
     <section className="container mx-auto px-4 py-12 sm:py-16 md:py-20 lg:py-32">
       <div className="grid items-center gap-10 md:gap-12 lg:grid-cols-2">
@@ -14,8 +16,10 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start">
-            <button className="h-10 min-w-[84px] rounded-lg bg-[#007f80] px-4 text-sm font-bold text-white border border-[#007f80] transition-colors duration-300 hover:bg-white hover:text-[#007f80]">
-              Signup
+            <button className="h-10 min-w-[84px] rounded-lg bg-[#007f80] px-4 text-sm font-bold text-white border border-[#007f80] transition-colors duration-300 hover:bg-white hover:text-[#007f80]"
+            onClick={()=>navigate('/register')}
+            >
+              Get Started With Therapy 
             </button>
             <button className="h-10 min-w-[84px] rounded-lg border border-[#007f80] px-4 text-sm font-bold text-[#007f80] transition-colors duration-300 hover:bg-[#007f80] hover:text-white">
               Login
