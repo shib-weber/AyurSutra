@@ -1,38 +1,54 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
+const quotes = [
+  "Health is wealth – Ayurveda teaches balance.",
+  "Nature itself is the best physician.",
+  "Wellness is the harmony of body, mind, and spirit.",
+  "A healthy mind in a healthy body.",
+  "Ayurveda heals from within.",
+  "Preventive care is the best medicine.",
+];
+
 const Preloader = () => {
+  const [quote, setQuote] = useState("");
+
+  useEffect(() => {
+    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    setQuote(randomQuote);
+  }, []);
+
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-[var(--light-bg)] z-50">
-      <motion.svg
-        fill="#1a544a"
-        viewBox="0 0 48 48"
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-32 h-32 text-[var(--primary-green)]"
-        initial={{ scale: 0, rotate: 0, opacity: 0 }}
-        animate={{ scale: [0, 1.2, 1], rotate: 360, opacity: 1 }}
+    <div className="fixed inset-0 flex flex-col items-center justify-center bg-[var(--light-bg)] z-50">
+      {/* Logo Animation */}
+      <motion.img
+        src="logo.png" // replace with your image path
+        alt="Loading..."
+        className="w-48 h-48 object-contain mb-6"
+        initial={{ scale: 0.5, opacity: 0 }}
+        animate={{ scale: [0.5, 1.3, 1], opacity: [0, 1, 1] }}
         transition={{
-          duration: 2,
+          duration: 1.8,
           ease: "easeInOut",
-          repeat: Infinity, // keeps spinning until loader ends
+          repeat: Infinity,
           repeatType: "loop",
         }}
+      />
+
+      {/* Random Quote */}
+      <motion.p
+        className="text-center text-lg sm:text-xl text-amber-600 font-semibold px-4"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
       >
-        <motion.path
-          clipRule="evenodd"
-          d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z"
-          fill="#1a544a"
-          fillRule="evenodd"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{
-            duration: 1.5,
-            ease: "easeInOut",
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-        />
-      </motion.svg>
+        "{quote}"
+      </motion.p>
+
+      {/* Powered by footer */}
+      <p className="absolute bottom-4 text-sm text-amber-700">
+        Powered by Code Prana
+      </p>
     </div>
   );
 };

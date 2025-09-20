@@ -1,18 +1,22 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
+  const navigate = useNavigate()
+  const navLinks = [
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Therapies", href: "#therapies" },
+    { name: "Blog", href: "#blog" },
+    { name: "Contact", href: "#contact" },
+  ];
+
   return (
-    <header className="sticky  top-0 z-50 flex items-center justify-between border-b border-primary/20 bg-background-light/80 px-6 md:px-10 py-3 backdrop-blur-sm dark:bg-background-dark/80">
+    <header className="sticky top-0 z-50 flex items-center justify-between border-b border-primary/20 bg-background-light/80 px-6 md:px-10 py-3 backdrop-blur-sm dark:bg-background-dark/80">
       {/* Logo */}
       <div className="flex items-center gap-3 text-primary">
-        <svg className="h-8 w-8" fill="#3d9b83" viewBox="0 0 48 48">
-          <path
-            d="M24 .757L47.243 24 24 47.243.757 24 24 .757zM21 35.757V12.243L9.243 24 21 35.757z"
-            fill="#007f80"
-          />
-        </svg>
+        <img className="h-12 w-22" src="logo.png" alt="" />
         <h2 className="text-2xl font-bold text-[#007f80] tracking-tight">
           AyurSutra
         </h2>
@@ -20,13 +24,13 @@ export default function Header() {
 
       {/* Desktop Nav */}
       <nav className="hidden md:flex gap-8">
-        {["Home", "About", "Therapies", "Blog", "Contact"].map((item) => (
+        {navLinks.map((item) => (
           <a
-            key={item}
-            href="#"
-            className="text-sm font-medium text-gray-600 px-3 py-2 rounded-md transition-colors duration-200 hover:text-black hover:bg-[#00808077] "
+            key={item.name}
+            href={item.href}
+            className="text-sm font-medium text-gray-600 px-3 py-2 rounded-md transition-colors duration-200 hover:text-black hover:bg-[#00808077]"
           >
-            {item}
+            {item.name}
           </a>
         ))}
       </nav>
@@ -61,10 +65,13 @@ export default function Header() {
         </div>
 
         {/* Buttons */}
-        <button className="h-10 min-w-[84px] rounded-lg border border-[#007f80] px-4 text-sm font-bold text-[#007f80] transition-colors duration-300 hover:bg-[#007f80] hover:text-white">
+        <button className="h-10 min-w-[84px] rounded-lg border border-[#007f80] px-4 text-sm font-bold text-[#007f80] transition-colors duration-300 hover:bg-[#007f80] hover:text-white"
+        onClick={()=>navigate('/register')}
+        >
           Login
         </button>
-        <button className="h-10 min-w-[84px] rounded-lg bg-[#007f80] px-4 text-sm font-bold text-white border border-[#3d9b83] transition-colors duration-300 hover:bg-transparent hover:text-[#007f80]">
+        <button className="h-10 min-w-[84px] rounded-lg bg-[#007f80] px-4 text-sm font-bold text-white border border-[#3d9b83] transition-colors duration-300 hover:bg-transparent hover:text-[#007f80]" 
+        onClick={()=>navigate('/new_register')}>
           Signup
         </button>
       </div>
@@ -94,21 +101,21 @@ export default function Header() {
         </button>
 
         <div className="mt-10 flex flex-col bg-white items-start gap-6 px-6">
-          {["Home", "About", "Therapies", "Blog", "Contact"].map((item) => (
+          {navLinks.map((item) => (
             <a
-              key={item}
-              href="#"
-              className="text-base font-medium  text-[#007f80] "
+              key={item.name}
+              href={item.href}
+              className="text-base font-medium text-[#007f80]"
               onClick={() => setIsOpen(false)}
             >
-              {item}
+              {item.name}
             </a>
           ))}
 
-          <button className="w-full h-10 rounded-lg border border-[#007f80] px-4 text-sm font-bold text-[#007f80] transition-colors duration-300 hover:bg-[#007f80] hover:text-white">
+          <button onClick={()=>navigate('/register')} className="w-full h-10 rounded-lg border border-[#007f80] px-4 text-sm font-bold text-[#007f80] transition-colors duration-300 hover:bg-[#007f80] hover:text-white">
             Login
           </button>
-          <button className="w-full h-10 mb-2.5 rounded-lg bg-[#007f80] px-4 text-sm font-bold text-white border border-[#3d9b83] transition-colors duration-300 hover:bg-transparent hover:text-[#007f80]">
+          <button onClick={()=>navigate('/new_register')} className="w-full h-10 mb-2.5 rounded-lg bg-[#007f80] px-4 text-sm font-bold text-white border border-[#3d9b83] transition-colors duration-300 hover:bg-transparent hover:text-[#007f80]">
             Signup
           </button>
         </div>

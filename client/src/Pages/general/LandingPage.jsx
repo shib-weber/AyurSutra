@@ -5,19 +5,17 @@ import WhyChooseUs from "../../components/WhyChooseUs";
 import Offerings from "../../components/Offerings";
 import Blog from "../../components/Blog";
 import Footer from "../../components/Footer";
-import Preloader from "../../components/Preloader"; // make sure this exists
+import Preloader from "../../components/Preloader";
 import { useState, useEffect } from "react";
-import axios from "axios"; // ✅ fixed import
+import axios from "axios";
 
 export default function LandingPage() {
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState({ patients: 0, doctors: 0, blogs: 0 });
 
   useEffect(() => {
-    // Preloader timeout
     const timer = setTimeout(() => setLoading(false), 3000);
 
-    // Fetch backend stats
     axios
       .get("http://localhost:5000/api/patient/stats")
       .then((res) => setStats(res.data))
@@ -32,13 +30,31 @@ export default function LandingPage() {
     <div className="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
       <Header />
       <main className="flex flex-col">
-        <Hero />
-        <Stats stats={stats} /> {/* pass stats if your Stats component needs them */}
-        <WhyChooseUs />
-        <Offerings />
-        <Blog />
+        {/* Add IDs to link sections */}
+        <section id="home">
+          <Hero />
+        </section>
+        <section id="stats">
+          <Stats stats={stats} />
+        </section>
+        <section id="about">
+          <WhyChooseUs />
+        </section>
+
+        <section id="therapies">
+          <Offerings />
+        </section>
+
+        <section id="blog">
+          <Blog />
+        </section>
+
+
       </main>
-      <Footer />
+
+      <section id="contact">
+        <Footer />
+      </section>
     </div>
   );
 }

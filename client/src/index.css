@@ -11,6 +11,9 @@
   --c-success: #34D399;              
   --c-error: #F87171;                
 }
+html {
+  scroll-behavior: smooth;
+}
 
 @keyframes fall {
   0% {
