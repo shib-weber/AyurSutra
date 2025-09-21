@@ -1,46 +1,48 @@
 // PatientHome.jsx
 import React from "react";
-import Header from "../../components/PatientHeader"
+import Header from "../../components/PatientHeader";
 import Sidebar from "../../components/Sidebar";
-
 
 const PatientHome = () => {
   return (
-    <div className="flex min-h-screen w-full flex-col">
+    <div className="flex min-h-screen w-full  bg-gray-50">
+      {/* Sidebar */}
       <Sidebar />
-        <Header isProfileComplete={true} title={`Welcome To our Service!`} />
+
+
       {/* Main */}
-      <main className="flex-grow">
+      <main className="flex-grow mt-2 mr-2">
         {/* Hero Section */}
         <section
-          className="relative flex min-h-[60vh] items-center justify-center bg-cover bg-center py-20 text-white"
+          className="relative flex min-h-[60vh] items-center justify-center bg-cover bg-center px-4 py-16 text-white sm:py-20"
           style={{
             backgroundImage:
               'linear-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDWX1Nrf30TWgk3UlILItTpP5LCX6JS1dXO5sQTj3b_AJb0Ocu68puqDHoxxcBLq07tLm0PUwg0uQ1Cw3vtxJY3VJq1g7M_T7vF-LVl1vBXa2LFSwvMPSprAXHcSoTpe5SUb4rg4V1i6WqAYBqlv5rRZY7lD8LrSvkoT-f-zF5tUDvWqkKJaJflEAr-mwVGcfTANG1okYKcjtLbobdqDxx83yVHAbFG7hwylpD8eAs2ve3LZSIhBOch5nR-VhbabTXzsz1uFyS8L-s")',
           }}
         >
-          <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl font-black leading-tight tracking-tighter md:text-6xl">
+          <div className="container mx-auto max-w-4xl text-center">
+            <h1 className="text-3xl font-black leading-tight tracking-tight sm:text-5xl md:text-6xl">
               Your Path to Wellness Starts Here
             </h1>
-            <p className="mx-auto mt-4 max-w-2xl text-lg font-light text-gray-200">
-              Discover a sanctuary of healing and rejuvenation. Our expert team is dedicated to guiding you on your journey
-              to optimal health and well-being.
+            <p className="mx-auto mt-4 max-w-2xl text-base font-light text-gray-200 sm:text-lg md:text-xl">
+              Discover a sanctuary of healing and rejuvenation. Our expert team
+              is dedicated to guiding you on your journey to optimal health and
+              well-being.
             </p>
-            <button className="mt-8 rounded-lg bg-primary px-8 py-3 text-lg font-bold text-white transition-transform hover:scale-105">
+            <button className="mt-8 rounded-lg bg-[#007f80] px-6 py-3 text-base font-bold text-white transition-transform hover:scale-105 sm:px-8 sm:text-lg">
               Book Now
             </button>
           </div>
         </section>
 
         {/* Therapies Section */}
-        <section className="py-16 sm:py-24">
+        <section className="py-14 sm:py-20 lg:py-24">
           <div className="container mx-auto px-4">
-            <h2 className="mb-12 text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+            <h2 className="mb-10 text-center text-2xl font-bold tracking-tight text-gray-900 sm:mb-12 sm:text-3xl md:text-4xl">
               Our Therapies
             </h2>
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-5">
-              {/* Therapy Cards */}
+
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
               {[
                 {
                   title: "Acupuncture",
@@ -68,8 +70,11 @@ const PatientHome = () => {
                   img: "https://lh3.googleusercontent.com/aida-public/AB6AXuA2Udgzgztr3f5Tiu6WW4dP7KRZJ4B0EE32fd1GxLpTHKKOg95tXenbmIxJbSYzj21Nn1zTVMALZZVxN81GQNV9rcWKBUAi607KVk-UM_mmJOBDBWdc5ZO88mie08ATkKneuC3ZiYRb4HPhXGeNIn7bJ0jUMuCiqVbpO4-HyBUJWkjCf-rDE2AxW1VyGP-eUNL7UuUU7XYlJH0yDbAOUrs0X99zp_J_v4GAacfR7uN-2oHVj4ZZUf4iIIIE9g723XA30Eu3U-EOTHw",
                 },
               ].map((therapy, idx) => (
-                <div key={idx} className="flex flex-col gap-4">
-                  <div className="aspect-square w-full overflow-hidden rounded-lg">
+                <div
+                  key={idx}
+                  className="flex flex-col gap-3 rounded-lg bg-white p-4 shadow-lg hover:shadow-blue-700 transition-transform hover:scale-[1.02]"
+                >
+                  <div className="aspect-square w-full overflow-hidden rounded-md">
                     <img
                       alt={therapy.title + " therapy"}
                       className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
@@ -77,8 +82,10 @@ const PatientHome = () => {
                     />
                   </div>
                   <div>
-                    <h3 className="text-lg font-medium text-gray-900 dark:text-white">{therapy.title}</h3>
-                    <p className="text-sm text-primary">{therapy.desc}</p>
+                    <h3 className="text-lg font-semibold text-gray-900">
+                      {therapy.title}
+                    </h3>
+                    <p className="text-sm text-[#007f80]">{therapy.desc}</p>
                   </div>
                 </div>
               ))}
@@ -86,8 +93,7 @@ const PatientHome = () => {
           </div>
         </section>
 
-        {/* Remaining sections like Doctors, Blog, FAQ, CTA, Footer */}
-        {/* You can follow the same pattern: map over arrays for repeated items */}
+        {/* Placeholder for more sections (Doctors, Blog, FAQ, etc.) */}
       </main>
     </div>
   );
