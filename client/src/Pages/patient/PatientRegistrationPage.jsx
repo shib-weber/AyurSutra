@@ -15,11 +15,12 @@ const PatientRegistrationPage = () => {
   });
 
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showRePassword, setShowRePassword] = useState(false);
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  // Handle input change
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -27,14 +28,8 @@ const PatientRegistrationPage = () => {
       [name]: type === "checkbox" ? checked : value,
     });
   };
-    const togglePassword = () => {
-    setShowPassword((prev) => !prev);
-  };
 
-  const toggleRePassword = () => {
-    setShowRePassword((prev) => !prev);
-  };
-
+  // Submit handler
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -59,10 +54,11 @@ const PatientRegistrationPage = () => {
       const res = await axios.post("http://localhost:5000/api/auth/register", {
         email: formData.email,
         password: formData.password,
-        repassword: formData.confirmPassword,
+        confirmPassword: formData.confirmPassword,
       });
+      console.log(res)
 
-      // Store token + patient info
+      // Save token + user to localStorage
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("patient", JSON.stringify(res.data.patient));
 
@@ -77,13 +73,14 @@ const PatientRegistrationPage = () => {
     }
   };
 
+  // Google signup handler (placeholder)
   const handleGoogleSignUp = () => {
     console.log("Google Sign-Up clicked");
-    // Later: integrate Google OAuth here
+    // TODO: integrate Google OAuth later
   };
 
   return (
-    <div className="font-display bg-background-light overflow-x-hidden text-text-light  min-h-screen flex flex-col">
+    <div className="font-display bg-background-light overflow-x-hidden text-text-light min-h-screen flex flex-col">
       <Header />
 
       {/* Main Content */}
@@ -110,66 +107,66 @@ const PatientRegistrationPage = () => {
             onSubmit={handleSubmit}
             className="mt-6 space-y-6 bg-[#7eeeee52] dark:bg-background-dark p-6 rounded-xl shadow-md"
           >
-            <div className="space-y-4">
-              {/* Email */}
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium mb-1"
-                >
-                  Email address
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Enter your email"
-                  required
-                  className="w-full px-3 py-3 border-2 border-subtle-light dark:border-subtle-dark rounded-lg bg-background-light dark:bg-background-dark placeholder-placeholder-light dark:placeholder-placeholder-dark focus:outline-none focus:ring-2 focus:ring-[#007f80] focus:border-[#007f80] sm:text-sm"
-                />
-              </div>
+            {/* Email */}
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium mb-1"
+              >
+                Email address
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Enter your email"
+                required
+                className="w-full px-3 py-3 border-2 border-subtle-light dark:border-subtle-dark rounded-lg bg-background-light dark:bg-background-dark placeholder-placeholder-light dark:placeholder-placeholder-dark focus:outline-none focus:ring-2 focus:ring-[#007f80] focus:border-[#007f80] sm:text-sm"
+              />
+            </div>
 
-          {/* Password */}
-          <div className="relative">
-            <label className="block mb-1 font-medium">Password</label>
-            <input
-              type={showPassword ? "text" : "password"}
-              name="password"
-              className="w-full px-4 py-2 border rounded focus:ring focus:ring-emerald-300"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-            <button
-              type="button"
-              onClick={togglePassword}
-              className="absolute right-3 top-9 text-gray-500 hover:text-emerald-600"
-            >
-              {showPassword ? <FaEyeSlash /> : <FaEye />}
-            </button>
-          </div>
+            {/* Password */}
+            <div className="relative">
+              <label className="block mb-1 font-medium">Password</label>
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                placeholder="Enter your password"
+                className="w-full px-4 py-2 border rounded focus:ring focus:ring-emerald-300"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-9 text-gray-500 hover:text-emerald-600"
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
 
-          {/* Re-enter Password */}
-          <div className="relative">
-            <label className="block mb-1 font-medium">Re-enter Password</label>
-            <input
-              type={showRePassword ? "text" : "password"}
-              name="rePassword"
-              className="w-full px-4 py-2 border rounded focus:ring focus:ring-emerald-300"
-              value={formData.rePassword}
-              onChange={handleChange}
-              required
-            />
-            <button
-              type="button"
-              onClick={toggleRePassword}
-              className="absolute right-3 top-9 text-gray-500 hover:text-emerald-600"
-            >
-              {showRePassword ? <FaEyeSlash /> : <FaEye />}
-            </button>
-          </div>
+            {/* Confirm Password */}
+            <div className="relative">
+              <label className="block mb-1 font-medium">Confirm Password</label>
+              <input
+                type={showRePassword ? "text" : "password"}
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                required
+                placeholder="Re-enter your password"
+                className="w-full px-4 py-2 border rounded focus:ring focus:ring-emerald-300"
+              />
+              <button
+                type="button"
+                onClick={() => setShowRePassword(!showRePassword)}
+                className="absolute right-3 top-9 text-gray-500 hover:text-emerald-600"
+              >
+                {showRePassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
             </div>
 
             {/* Terms & Conditions */}

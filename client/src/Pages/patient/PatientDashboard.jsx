@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar";
 import Header from "../../components/PatientHeader";
-import PatientProfile from "../../components/PatientProfile";
-import TherapySchedule from "../../components/TherapySchedule";
-import ReportsProgress from "../../components/ReportsProgress";
-import Notifications from "../../components/Notifications";
-import UpcomingAppointments from "../../components/UpcomingAppointments";
+import NotificationCard from "../../components/NotificationCard";
+import TherapyCard from "../../components/TherapyCard";
+import ProgressReport from "../../components/ProgressReport";
+import PointsSystem from "../../components/PointsSystem";
+import Calendar from "../../components/Calendar";
+import HealthChart from "../../components/HealthChart";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -26,6 +27,7 @@ const PatientDashboard = () => {
         const res = await axios.get("http://localhost:5000/api/patient/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
+
         setPatient(res.data);
         setLoading(false);
       } catch (err) {
@@ -34,70 +36,94 @@ const PatientDashboard = () => {
         navigate("/login");
       }
     };
+
     fetchPatientData();
-  }, []);
+  }, [navigate]);
 
   if (loading) return <p className="text-center mt-20">Loading...</p>;
   if (!patient) return <p className="text-center mt-20">No patient data found</p>;
 
-  const handleBookTherapy = () => {
-    if (!patient.profileCompleted) {
-      alert("Please complete your profile before booking a therapy session!");
-      return;
-    }
-    navigate("/appointment");
+  const handleFeedbackSubmit = () => {
+    alert("Feedback submitted successfully!");
+    // TODO: send to backend
   };
 
   return (
-    <div className="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
-      <div className="flex h-full grow flex-row">
-        <Sidebar />
-        <div className="flex-1 flex flex-col">
-          <Header patientName={patient.name} />
+    <div className="font-display bg-white flex min-h-screen">
+      <Sidebar />
+      <main className="flex-1 p-6">
+        <Header title={`Welcome ${patient.name || ""}!`} />
 
-          <main className="flex-1 p-8 @container">
-            <div className="grid grid-cols-1 @4xl:grid-cols-3 gap-8">
-              <div className="col-span-1 @4xl:col-span-2">
-                <div className="flex justify-between items-center mb-8">
-                  <div>
-                    <h1 className="text-3xl text-emerald-900 font-bold mb-2">
-                      Welcome, {patient.name || "Patient"}!
-                    </h1>
-                    <p className="text-[var(--muted-foreground)]">
-                      Here's a summary of your health and therapy schedule.
-                    </p>
-                    {!patient.profileCompleted && (
-                      <p className="mt-2 text-red-600 font-semibold">
-                        Your profile is incomplete. Please complete it to book therapy.
-                      </p>
-                    )}
-                  </div>
-                  <button
-                    onClick={handleBookTherapy}
-                    className={`px-4 py-2 border-2 border-emerald-900 text-emerald-900 font-semibold rounded-lg transition ${
-                      patient.profileCompleted
-                        ? "hover:bg-emerald-900 hover:text-white"
-                        : "bg-gray-400 cursor-not-allowed"
-                    }`}
-                    disabled={!patient.profileCompleted}
-                  >
-                    Book a Therapy
-                  </button>
-                </div>
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mt-6">
+          {/* Left side */}
+          <div className="xl:col-span-2 space-y-6">
 
-                <PatientProfile patient={patient} />
-                <TherapySchedule appointments={patient.upcomingAppointments} />
-                <ReportsProgress patient={patient} />
-              </div>
+            {/* Upcoming Therapies */}
+            <div className="bg-background-light dark:bg-background-dark p-6 rounded-xl shadow-sm border border-primary/10 dark:border-primary/20 h-[400px] overflow-y-auto">
+              <h3 className="text-xl font-bold mb-4">Upcoming Therapies</h3>
+              {patient.upcomingAppointments && patient.upcomingAppointments.length > 0 ? (
+                patient.upcomingAppointments.map((appt, idx) => (
+                  <TherapyCard
+                    key={idx}
+                    day={appt.day}
+                    therapy={appt.therapy}
+                    time={appt.time}
+                    doctor={appt.doctor}
+                    image={appt.image}
+                  />
+                ))
+              ) : (
+                <p className="text-gray-500">No upcoming therapies</p>
+              )}
+            </div>
 
-              <div className="col-span-1">
-                <UpcomingAppointments appointments={patient.upcomingAppointments} />
-                <Notifications />
+            {/* Notifications */}
+            <div className="bg-background-light dark:bg-background-dark p-6 rounded-xl shadow-sm border border-primary/10 dark:border-primary/20 h-[250px]">
+              <h3 className="text-xl font-bold mb-4">Notifications</h3>
+              <ul className="divide-y divide-primary/20 dark:divide-primary/30 mt-4 h-full overflow-y-auto">
+                {patient.notifications && patient.notifications.length > 0 ? (
+                  patient.notifications.map((n, idx) => (
+                    <NotificationCard
+                      key={idx}
+                      icon={n.icon}
+                      title={n.title}
+                      time={n.time}
+                    />
+                  ))
+                ) : (
+                  <p className="text-gray-500">No notifications</p>
+                )}
+              </ul>
+            </div>
+
+            {/* Feedback */}
+            <div className="bg-background-light dark:bg-background-dark p-6 rounded-xl shadow-sm border border-primary/10 dark:border-primary/20 h-[200px] flex flex-col justify-between">
+              <h3 className="text-xl font-bold mb-4">Feedback</h3>
+              <textarea
+                className="form-textarea w-full rounded-lg border-primary/30 dark:border-primary/40 bg-background-light dark:bg-background-dark focus:ring-primary focus:border-primary placeholder-gray-400 dark:placeholder-gray-500 flex-1"
+                placeholder="Share your feedback about the therapy"
+                rows="4"
+              ></textarea>
+              <div className="flex justify-end mt-4">
+                <button
+                  onClick={handleFeedbackSubmit}
+                  className="bg-[#007f80] text-white font-bold py-2 px-6 rounded-lg hover:bg-primary/90 transition-colors"
+                >
+                  Submit Feedback
+                </button>
               </div>
             </div>
-          </main>
+          </div>
+
+          {/* Right side */}
+          <div className="xl:col-span-1 space-y-6">
+            <ProgressReport reports={patient.reports} />
+            <Calendar appointments={patient.upcomingAppointments} />
+            <HealthChart data={patient.dailyProgress} />
+            <PointsSystem points={patient.points} />
+          </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 };

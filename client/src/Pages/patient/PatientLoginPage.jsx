@@ -134,6 +134,7 @@ const PatientLoginPage = () => {
 
             {/* Error Message */}
             {error && <p className="text-red-500 text-sm">{error}</p>}
+            <p className=" text-blue-700 text-right hover:underline">Forget Password?</p>
 
             {/* Submit Button */}
             <div>

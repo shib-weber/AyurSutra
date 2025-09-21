@@ -5,8 +5,7 @@ const jwt = require("jsonwebtoken");
 const register = async (req, res) => {
   try {
     const { email, password, repassword } = req.body;
-    if (password !== repassword)
-      return res.status(400).json({ message: "Passwords do not match" });
+
 
     const exists = await Patient.findOne({ email });
     if (exists)
