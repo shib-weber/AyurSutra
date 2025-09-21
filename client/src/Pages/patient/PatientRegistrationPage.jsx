@@ -4,7 +4,7 @@ import Footer from "../../components/Footer";
 import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../../api/axiosInstance"
 
 const PatientRegistrationPage = () => {
   const [formData, setFormData] = useState({
@@ -51,7 +51,7 @@ const PatientRegistrationPage = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/register", {
+      const res = await api.post("/api/auth/register", {
         email: formData.email,
         password: formData.password,
         confirmPassword: formData.confirmPassword,
