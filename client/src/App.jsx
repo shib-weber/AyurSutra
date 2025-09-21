@@ -12,6 +12,7 @@ import AppointmentBooking from "./Pages/patient/Appointment";
 import AppointmentSuccess from "./Pages/patient/AppointmentSuccess";
 import Preloader from "./components/Preloader";
 import PatientProfile from "./Pages/patient/PatientProfile";
+import PatientHome from "./Pages/patient/PatientHome";
 
 const AppContent = () => {
   const location = useLocation();
@@ -40,6 +41,7 @@ const AppContent = () => {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/patient_dashboard" element={<PatientDashboard />} />
       <Route path="/patient_profile" element={<PatientProfile />} />
+      <Route path="/patient_home" element={<PatientHome />} />
       <Route path="/profile" element={<ProfileUpdate />} />
       <Route path="/appointment" element={<AppointmentBooking />} />
       <Route path="/appointment-success" element={<AppointmentSuccess />} />

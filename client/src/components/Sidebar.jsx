@@ -31,7 +31,7 @@ const Sidebar = () => {
         </svg>
       ),
       label: "Homepage",
-      href: "/home",
+      href: "/patient_home",
     },
     {
       icon: (
