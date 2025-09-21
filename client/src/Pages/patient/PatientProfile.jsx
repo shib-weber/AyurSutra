@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar";
 import Header from "../../components/PatientHeader";
 import api from "../../api/axiosInstance"
+import Preloader from "../../components/Preloader";
+
 
 
 const PatientProfile = () => {
@@ -81,7 +83,7 @@ const PatientProfile = () => {
     }
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Preloader></Preloader>;
   if (error) return <p>{error}</p>;
   return (
     <div className="flex min-h-screen">

@@ -9,6 +9,8 @@ import Calendar from "../../components/Calendar";
 import HealthChart from "../../components/HealthChart";
 import { useNavigate } from "react-router-dom";
 import api from "../../api/axiosInstance"
+import Preloader from "../../components/Preloader";
+
 
 const PatientDashboard = () => {
   const [patient, setPatient] = useState(null);
@@ -40,7 +42,7 @@ const PatientDashboard = () => {
     fetchPatientData();
   }, [navigate]);
 
-  if (loading) return <p className="text-center mt-20">Loading...</p>;
+  if (loading) return <Preloader></Preloader>;
   if (!patient) return <p className="text-center mt-20">No patient data found</p>;
 
   const handleFeedbackSubmit = () => {
