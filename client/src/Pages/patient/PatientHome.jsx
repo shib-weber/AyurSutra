@@ -1,39 +1,14 @@
 // PatientHome.jsx
 import React from "react";
+import Header from "../../components/PatientHeader"
+import Sidebar from "../../components/Sidebar";
+
 
 const PatientHome = () => {
   return (
     <div className="flex min-h-screen w-full flex-col">
-      {/* Header */}
-      <header className="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-primary/20 bg-background-light/80 px-4 py-3 backdrop-blur-sm dark:bg-background-dark/80 sm:px-6 lg:px-10">
-        <div className="flex items-center gap-4">
-          <div className="text-primary">
-            <svg className="h-8 w-8" fill="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z"></path>
-            </svg>
-          </div>
-          <h2 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Wellness Co.</h2>
-        </div>
-        <nav className="hidden items-center gap-8 md:flex">
-          <a className="text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary" href="#">Services</a>
-          <a className="text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary" href="#">Doctors</a>
-          <a className="text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary" href="#">Blog</a>
-          <a className="text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary" href="#">About Us</a>
-        </nav>
-        <div className="flex items-center gap-4">
-          <button className="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-primary/90">
-            <span className="truncate">Book Now</span>
-          </button>
-          <button className="h-10 w-10 overflow-hidden rounded-full">
-            <img
-              alt="User profile picture"
-              className="h-full w-full object-cover"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt5hvl94oUCrpGDNiCqlVjd0fyPqq_UGWvcbK6WzrZNQ-fqS9_alfhtNlfcrLtEfDyHKftSwB1hDdG6wh4SXNX4pMu-55qqd4qdhqxwygRlHGlGuporG2bAOjWc-biFQjf0Wc1vqgUw_8-TIt_4lKgkT6QC3LAWZBFGuXjOQUTxkDo-gMl2xTUzFrLda2N2aCJjmXrRRvzhqaQXSTvjj8uKCvlbseuq8jFlvqZCxG_UYKa7Fpp8IpQz00xtXzGghJvqVmTjDZMHJw"
-            />
-          </button>
-        </div>
-      </header>
-
+      <Sidebar />
+        <Header isProfileComplete={true} title={`Welcome To our Service!`} />
       {/* Main */}
       <main className="flex-grow">
         {/* Hero Section */}
