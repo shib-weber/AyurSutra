@@ -105,7 +105,7 @@ const PatientRegistrationPage = () => {
           {/* Registration Form */}
           <form
             onSubmit={handleSubmit}
-            className="mt-6 space-y-6 bg-[#7eeeee52] dark:bg-background-dark p-6 rounded-xl shadow-md"
+            className="mt-6 space-y-6 shadow-lg shadow-[#007f80] dark:bg-background-dark p-6 rounded-xl "
           >
             {/* Email */}
             <div>
