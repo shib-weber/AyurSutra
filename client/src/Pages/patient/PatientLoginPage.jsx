@@ -37,7 +37,7 @@ const PatientLoginPage = () => {
     setLoading(true);
 
     try {
-      const res = await api.post("api/auth/register", {
+      const res = await api.post("api/auth/login", {
         email: formData.email,
         password: formData.password,
       });

@@ -51,7 +51,7 @@ const PatientRegistrationPage = () => {
     setLoading(true);
 
     try {
-      const res = await api.post("/api/auth/new_register", {
+      const res = await api.post("/api/auth/register", {
         email: formData.email,
         password: formData.password,
         confirmPassword: formData.confirmPassword,
