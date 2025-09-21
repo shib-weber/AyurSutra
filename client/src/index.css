@@ -13,6 +13,7 @@
 }
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 @keyframes fall {
@@ -28,14 +29,4 @@ html {
     opacity: 0;
   }
 }
-
-.leaf {
-  animation-name: fall;
-  animation-duration: 8s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  left: calc(100% * var(--random-left));
-  animation-delay: calc(5s * var(--random-delay));
-}
-
 

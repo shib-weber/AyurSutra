@@ -27,7 +27,7 @@ export default function LandingPage() {
   if (loading) return <Preloader />;
 
   return (
-    <div className="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+    <div className="bg-background-light overflow-x-hidden dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
       <Header />
       <main className="flex flex-col">
         {/* Add IDs to link sections */}

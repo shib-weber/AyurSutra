@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import { FcGoogle } from "react-icons/fc";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const PatientLoginPage = () => {
@@ -10,11 +13,16 @@ const PatientLoginPage = () => {
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  const togglePassword = () => {
+    setShowPassword((prev) => !prev);
   };
 
   const handleSubmit = async (e) => {
@@ -34,7 +42,7 @@ const PatientLoginPage = () => {
         password: formData.password,
       });
 
-      // Backend returns { token, patient }
+      // Save login data
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("patient", JSON.stringify(res.data.patient));
 
@@ -48,65 +56,125 @@ const PatientLoginPage = () => {
   };
 
   const handleGoogleLogin = () => {
-    console.log("Google Sign-In clicked");
-    // Integrate Google OAuth here later if needed
+    console.log("Google Login clicked");
+    // Later integrate Google OAuth
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center">Patient Login</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block mb-1 font-medium">Email</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full border border-gray-300 rounded px-3 py-2"
-              placeholder="you@example.com"
-              required
-            />
+    <div className="font-display bg-background-light overflow-x-hidden text-text-light min-h-screen flex flex-col">
+      <Header />
+
+      {/* Main Content */}
+      <main className="flex-grow flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+        <div className="w-full max-w-md space-y-8">
+          {/* Heading */}
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold tracking-tight">
+              Patient Login
+            </h2>
+            <p className="mt-2 text-sm text-placeholder-light dark:text-placeholder-dark">
+              Don’t have an account?{" "}
+              <a
+                href="/new_register"
+                className="font-semibold text-[#007f80] hover:underline"
+              >
+                Sign up
+              </a>
+            </p>
           </div>
 
-          <div>
-            <label className="block mb-1 font-medium">Password</label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              className="w-full border border-gray-300 rounded px-3 py-2"
-              placeholder="Enter password"
-              required
-            />
+          {/* Login Form */}
+          <form
+            onSubmit={handleSubmit}
+            className="mt-6 space-y-6 bg-[#7eeeee52] dark:bg-background-dark p-6 rounded-xl shadow-md"
+          >
+            <div className="space-y-4">
+              {/* Email */}
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium mb-1"
+                >
+                  Email address
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Enter your email"
+                  required
+                  className="w-full px-3 py-3 border-2 border-subtle-light dark:border-subtle-dark rounded-lg bg-background-light dark:bg-background-dark placeholder-placeholder-light dark:placeholder-placeholder-dark focus:outline-none focus:ring-2 focus:ring-[#007f80] focus:border-[#007f80] sm:text-sm"
+                />
+              </div>
+
+              {/* Password */}
+              <div className="relative">
+                <label className="block mb-1 font-medium">Password</label>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder="Enter password"
+                  required
+                  className="w-full px-3 py-3 border-2 border-subtle-light dark:border-subtle-dark rounded-lg bg-background-light dark:bg-background-dark placeholder-placeholder-light dark:placeholder-placeholder-dark focus:outline-none focus:ring-2 focus:ring-[#007f80] focus:border-[#007f80] sm:text-sm"
+                />
+                <button
+                  type="button"
+                  onClick={togglePassword}
+                  className="absolute right-3 top-10 text-gray-500 hover:text-emerald-600"
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
+            </div>
+
+            {/* Error Message */}
+            {error && <p className="text-red-500 text-sm">{error}</p>}
+
+            {/* Submit Button */}
+            <div>
+              <button
+                type="submit"
+                className={`w-full py-3 px-4 rounded-lg text-white font-semibold ${
+                  loading
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-[#007f80] hover:bg-[#006666]"
+                } shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#007f80] transition-colors`}
+                disabled={loading}
+              >
+                {loading ? "logging in ..." : "Login"}
+              </button>
+            </div>
+          </form>
+
+          {/* Divider */}
+          <div className="flex items-center justify-center">
+            <span className="h-px bg-subtle-light dark:bg-subtle-dark w-full" />
+            <span className="px-3 text-sm text-placeholder-light dark:text-placeholder-dark">
+              OR
+            </span>
+            <span className="h-px bg-subtle-light dark:bg-subtle-dark w-full" />
           </div>
 
-          {error && <p className="text-red-500">{error}</p>}
-
-          <button
-            type="submit"
-            className={`w-full py-2 rounded text-white ${
-              loading ? "bg-gray-400" : "bg-green-600 hover:bg-green-700"
-            }`}
-            disabled={loading}
-          >
-            {loading ? "Logging in..." : "Login"}
-          </button>
-        </form>
-
-        <div className="mt-6 text-center">
-          <p className="mb-2">Or sign in with</p>
-          <button
-            onClick={handleGoogleLogin}
-            className="flex items-center justify-center w-full border border-gray-300 py-2 rounded hover:bg-gray-100 transition"
-          >
-            <FcGoogle className="w-5 h-5 mr-2" />
-            Sign in with Google
-          </button>
+          {/* Google Login */}
+          <div>
+            <button
+              type="button"
+              onClick={handleGoogleLogin}
+              className="w-full flex items-center justify-center gap-3 py-3 px-4 border border-subtle-light dark:border-subtle-dark rounded-lg bg-white dark:bg-background-dark text-gray-700 dark:text-text-dark font-medium shadow-sm hover:bg-gray-50 dark:hover:bg-subtle-dark transition-colors"
+            >
+              <FcGoogle className="w-5 h-5" />
+              Sign in with Google
+            </button>
+          </div>
         </div>
-      </div>
+      </main>
+
+      <Footer />
     </div>
   );
 };

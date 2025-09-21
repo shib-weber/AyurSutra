@@ -2,30 +2,11 @@ export default function Footer() {
   return (
     <footer className="bg-[#022424] py-12 text-gray-300">
       <div className="container mx-auto px-4  ">
-        <div className="lg:ml-25 grid grid-cols-2 gap-10 md:grid-cols-4  lg:grid-cols-4 ">
+        <div className="lg:ml-23 grid grid-cols-2 gap-10 md:grid-cols-4  lg:grid-cols-4 ">
           {/* Logo + description */}
           <div className="col-span-2 lg:col-span-1">
             <div className="flex items-center gap-3 text-white">
-              <svg
-                className="h-8 w-8"
-                fill="none"
-                viewBox="0 0 48 48"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clipPath="url(#clip0_6_330-footer)">
-                  <path
-                    clipRule="evenodd"
-                    d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z"
-                    fill="currentColor"
-                    fillRule="evenodd"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_6_330-footer">
-                    <rect fill="white" height="48" width="48" />
-                  </clipPath>
-                </defs>
-              </svg>
+            <img className="w-20 h-10" src="logo.png" alt="" />
               <h2 className="text-2xl font-bold tracking-tight">AyurSutra</h2>
             </div>
             <p className="mt-4 text-sm text-gray-400">
