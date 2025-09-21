@@ -27,7 +27,7 @@ const PatientHeader = ({ title, isProfileComplete }) => {
       {/* Red warning below Welcome if profile incomplete */}
       {!isProfileComplete && (
         <p
-          onClick={() => navigate("/profile")}
+          onClick={() => navigate("/patient_profile")}
           className="mt-2 text-sm text-red-600 cursor-pointer hover:underline"
         >
           ⚠ Please complete your profile before booking an appointment

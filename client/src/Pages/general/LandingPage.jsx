@@ -7,7 +7,7 @@ import Blog from "../../components/Blog";
 import Footer from "../../components/Footer";
 import Preloader from "../../components/Preloader";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../../api/axiosInstance"
 
 export default function LandingPage() {
   const [loading, setLoading] = useState(true);
@@ -16,8 +16,7 @@ export default function LandingPage() {
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 3000);
 
-    axios
-      .get("http://localhost:5000/api/patient/stats")
+      api.get("/api/patient/stats")
       .then((res) => setStats(res.data))
       .catch((err) => console.error("Error fetching stats:", err));
 

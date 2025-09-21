@@ -7,8 +7,8 @@ import ProgressReport from "../../components/ProgressReport";
 import PointsSystem from "../../components/PointsSystem";
 import Calendar from "../../components/Calendar";
 import HealthChart from "../../components/HealthChart";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import api from "../../api/axiosInstance"
 
 const PatientDashboard = () => {
   const [patient, setPatient] = useState(null);
@@ -20,11 +20,11 @@ const PatientDashboard = () => {
       try {
         const token = localStorage.getItem("token");
         if (!token) {
-          navigate("/login");
+          navigate("/register");
           return;
         }
 
-        const res = await axios.get("http://localhost:5000/api/patient/profile", {
+        const res = await api.get("/api/patient/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -33,7 +33,7 @@ const PatientDashboard = () => {
       } catch (err) {
         console.error(err);
         setLoading(false);
-        navigate("/login");
+        navigate("/register");
       }
     };
 
@@ -52,7 +52,7 @@ const PatientDashboard = () => {
     <div className="font-display bg-white flex min-h-screen">
       <Sidebar />
       <main className="flex-1 p-6">
-        <Header title={`Welcome ${patient.name || ""}!`} />
+        <Header isProfileComplete={patient.complete} title={`Welcome ${patient.name || ""}!`} />
 
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mt-6">
           {/* Left side */}
