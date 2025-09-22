@@ -21,7 +21,7 @@ export default function Hero() {
             >
               Get Started With Therapy 
             </button>
-            <button className="h-10 min-w-[84px] rounded-lg border border-[#007f80] px-4 text-sm font-bold text-[#007f80] transition-colors duration-300 hover:bg-[#007f80] hover:text-white">
+            <button onClick={()=>navigate('/register') className="h-10 min-w-[84px] rounded-lg border border-[#007f80] px-4 text-sm font-bold text-[#007f80] transition-colors duration-300 hover:bg-[#007f80] hover:text-white">
               Login
             </button>
           </div>
