@@ -37,7 +37,8 @@ const Preloader = () => {
 
       {/* Random Quote */}
       <motion.p
-        className="text-center text-lg sm:text-xl text-amber-600 font-semibold px-4"
+        className="text-center text-lg sm:text-xl font-semibold px-4 
+             bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
@@ -46,9 +47,12 @@ const Preloader = () => {
       </motion.p>
 
       {/* Powered by footer */}
-      <p className="absolute bottom-4 text-sm text-amber-700">
-        Powered by Code Prana
-      </p>
+    <p
+  className="absolute bottom-4 text-sm 
+             bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent"
+>
+  Powered by Code Prana
+</p>
     </div>
   );
 };
