@@ -13,6 +13,8 @@ import AppointmentSuccess from "./Pages/patient/AppointmentSuccess";
 import Preloader from "./components/Preloader";
 import PatientProfile from "./Pages/patient/PatientProfile";
 import PatientHome from "./Pages/patient/PatientHome";
+import PatientAppointment from "./Pages/patient/PatientAppointment";
+import DoctorBooking from "./pages/patient/DoctorBooking";
 
 const AppContent = () => {
   const location = useLocation();
@@ -42,8 +44,9 @@ const AppContent = () => {
       <Route path="/patient_dashboard" element={<PatientDashboard />} />
       <Route path="/patient_profile" element={<PatientProfile />} />
       <Route path="/patient_home" element={<PatientHome />} />
-      <Route path="/profile" element={<ProfileUpdate />} />
-      <Route path="/appointment" element={<AppointmentBooking />} />
+      {/*<Route path="/profile" element={<ProfileUpdate />} />*/}
+      <Route path="/appointment" element={<PatientAppointment/>} />
+      <Route path="appointment/book/:doctorId" element={<DoctorBooking />} />
       <Route path="/appointment-success" element={<AppointmentSuccess />} />
     </Routes>
   );
