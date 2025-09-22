@@ -14,7 +14,7 @@ import Preloader from "./components/Preloader";
 import PatientProfile from "./Pages/patient/PatientProfile";
 import PatientHome from "./Pages/patient/PatientHome";
 import PatientAppointment from "./Pages/patient/PatientAppointment";
-import DoctorBooking from "./pages/patient/DoctorBooking";
+import DoctorBooking from "./Pages/patient/DoctorBooking";
 
 const AppContent = () => {
   const location = useLocation();
