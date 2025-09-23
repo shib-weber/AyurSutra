@@ -1,42 +1,113 @@
-import React from "react";
-
-const therapies = [
-  {
-    id: 1,
-    name: "Panchakarma",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDp3CMw8v0Zofuy1Ousk_Jt7H_O3h4N0B1cdH3HIG3cep6IaX7qYEss5cSpduciW2C-VXeXvMuM1fkBejKL5jnbKomKwQPkP3w1TJvZQ4yLbYNWAAsIlRczcVpqUomyQOrGRgQtfqXOgfBDzuKj2A1pDWj3vbMOTsDwUM9-x5uOa9upCxjp8tvzw8K8BOzIqxk6VAiuvCAgmqdahsbkgpr2Cz6bmTmVsrjBYM4SQ2dELMWZAnpTZ7u10lOD4ovH8Nzz4S2dICTNkRs",
-    desc: "Detoxifying therapy for overall health."
-  },
-  {
-    id: 2,
-    name: "Shirodhara",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB3jAH_A_QjvmjAYCAkHK6no9AWSPa46LmMA5FrwUW6fgFshUQu2Dz5yiwwQi11iAv-5-383JKjdvnAY2xjodxMt0lV-kytpWunGhjN739V7G3Y98Im7O75NO3K_Gd9OosEV0NqzbMRyrleG2ey8uLo0Rg_kUQPMrw3gGugRby6A2o-wdH-fR37nZYPDQyCvfR0GbhWfzXbcUkO5ATKT1f4ia4FbwuavI3eWGjqlKeD1fBjK4iJd6eEyHKW5c_9DSerQYnqNP_leBA",
-    desc: "Relaxation therapy for mental peace."
-  }
-];
+import React, { useState } from "react";
+import doctors from "../data/doctor";
+import { useNavigate } from "react-router-dom";
+import therapies from "../data/therapies";
 
 const RecommendedTherapies = () => {
+  const navigate = useNavigate();
+  const [selectedTherapy, setSelectedTherapy] = useState(null);
+
+  // Filter doctors based on therapy name and doctor's specialty matching
+  const getDoctorsForTherapy = (therapyName) => {
+    return doctors.filter((doc) =>
+      doc.specialty.toLowerCase().includes(therapyName.toLowerCase())
+    );
+  };
+
   return (
-    <div>
-      <h3 className="text-2xl font-semibold text-black  mb-4">
+    <div className="max-w-5xl mx-auto p-6 bg-gray-50 rounded-xl shadow-lg">
+      <h3 className="text-2xl font-semibold text-black mb-6">
         Recommended Therapies
       </h3>
-      <div className="grid md:grid-cols-2 gap-6">
-        {therapies.map(t => (
-          <div
-            key={t.id}
-            className="bg-white  p-4 rounded-lg shadow shadow-emerald-900"
+
+      {!selectedTherapy ? (
+        // ---------- GRID VIEW ----------
+        <div className="grid h-[500px] overflow-hidden overflow-y-auto md:grid-cols-2 gap-6">
+          {therapies.map((t) => (
+            <div
+              key={t.id}
+              className="bg-white cursor-pointer hover:scale-[1.02] transition-transform duration-200 p-4 rounded-lg shadow shadow-emerald-900"
+              onClick={() => setSelectedTherapy(t)}
+            >
+              <img
+                src={t.image}
+                alt={t.name}
+                className="w-full h-40 object-cover rounded-md"
+              />
+              <h4 className="text-lg font-bold mt-3 text-black">{t.name}</h4>
+              <p className="text-gray-900 text-sm mt-2">{t.desc}</p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        // ---------- DETAIL VIEW ----------
+        <div className="bg-white p-6 rounded-lg shadow-lg">
+          <button
+            className="mb-4 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700"
+            onClick={() => setSelectedTherapy(null)}
           >
-            <img src={t.image} alt={t.name} className="w-full h-40 object-cover rounded-md" />
-            <h4 className="text-lg font-bold mt-3 text-black ">
-              {t.name}
-            </h4>
-            <p className="text-gray-900  text-sm mt-2">
-              {t.desc}
-            </p>
+            ← Back
+          </button>
+
+          <img
+            src={selectedTherapy.image}
+            alt={selectedTherapy.name}
+            className="w-full h-64 object-cover rounded-lg mb-4"
+          />
+          <h4 className="text-xl font-bold text-black mb-2">
+            {selectedTherapy.name}
+          </h4>
+          <p className="text-gray-800 mb-6">{selectedTherapy.desc}</p>
+
+          <h5 className="text-lg font-semibold text-emerald-800 mb-4">
+            Available Doctors
+          </h5>
+          <div className="grid md:grid-cols-2 gap-4">
+            {getDoctorsForTherapy(selectedTherapy.name).length > 0 ? (
+              getDoctorsForTherapy(selectedTherapy.name).map((doc) => (
+                <div
+                  key={doc.id}
+                  className="flex items-start bg-gray-50 p-4 rounded-lg shadow-sm"
+                >
+                  <img
+                    src={doc.image}
+                    alt={doc.name}
+                    className="w-16 h-16 rounded-full object-cover mr-4"
+                  />
+                  <div>
+                    <h6 className="font-bold text-gray-900">{doc.name}</h6>
+                    <p className="text-sm text-gray-600 mb-2">
+                      {doc.specialty}
+                    </p>
+                    {doc.venues.map((venue) => (
+                      <div key={venue.id} className="mb-2">
+                        <p className="text-sm font-semibold text-emerald-700">
+                          {venue.name}
+                        </p>
+                        <div className="flex flex-wrap gap-2 mt-1">
+                          {venue.timeSlots.map((slot, idx) => (
+                            <span
+                              key={idx}
+                              className="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded"
+                            >
+                              {slot}
+                            </span>
+                          ))}
+                          <button onClick={() => navigate(`/appointment/book/${doc.id}`)} className="bg-green-500 p-1 rounded hover:bg-green-800 hover:text-white">Book</button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p className="text-gray-500">
+                No doctors available for this therapy currently.
+              </p>
+            )}
           </div>
-        ))}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

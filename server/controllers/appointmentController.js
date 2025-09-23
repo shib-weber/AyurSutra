@@ -23,8 +23,8 @@ const bookAppointment = async (req, res) => {
 
     const messages = [
       { message: `Your appointment with Dr. ${notes} is confirmed for ${new Date(slotDay).toLocaleString()} at ${slot}`, category: "General" },
-      { message: `Please follow pre-appointment suggestions for your session with Dr. ${notes}`, category: "Pre-Appointment Suggestions" },
-      { message: `Post-appointment suggestions for your session with Dr. ${notes} will be shared after your appointment`, category: "Post-Appointment Suggestions" },
+      { message: `Please follow pre-appointment suggestions for your session : Come on an empty stomach or light meal 2 hrs before Panchakarma session.`, category: "Pre-Appointment Suggestions" },
+      { message: `Post-appointment suggestions for your session : Avoid spicy, oily, and heavy foods 24 hrs prior to therapy. Drink warm water.`, category: "Post-Appointment Suggestions" },
     ];
 
     const notificationIds = [];

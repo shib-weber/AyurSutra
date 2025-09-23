@@ -107,6 +107,7 @@ const PatientDashboard = () => {
         return (
           <NotificationCard
             key={n.id}
+            type={n.category}
             icon={icon}
             title={n.title}
             time={n.time}

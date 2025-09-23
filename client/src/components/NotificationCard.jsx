@@ -52,15 +52,24 @@ const icons = {
   ),
 };
 
-const NotificationCard = ({ type = "general", title, time }) => {
+// Map category → background colors
+const bgColors = {
+  general: "bg-green-100 hover:bg-green-300",
+  pre: "bg-yellow-100 hover:bg-yellow-300",
+  post: "bg-blue-100 hover:bg-blue-300",
+};
+
+const NotificationCard = ({ type , title, time }) => {
+  const bg = bgColors[type] || bgColors.general;
+
   return (
-    <li className="py-3 mb-4 flex items-start gap-4 bg-emerald-100 text-black hover:bg-emerald-300  transition rounded-lg px-3">
+    <li className={`py-3 mb-4 flex items-start gap-4 ${bg} text-black transition rounded-lg px-3`}>
       <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center text-black rounded-full">
         {icons[type] || icons.general}
       </div>
       <div className="flex-1">
-        <p className="font-semibold text-gray-800 ">{title}</p>
-        <p className="text-xs text-gray-900  mt-1">{time}</p>
+        <p className="font-semibold text-gray-800">{title}</p>
+        <p className="text-xs text-gray-900 mt-1">{time}</p>
       </div>
     </li>
   );
