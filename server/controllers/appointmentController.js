@@ -4,18 +4,19 @@ const Patient = require("../models/Patient")
 
 const bookAppointment = async (req, res) => {
   try {
-    const { doctorId, slot } = req.body;
+    const { doctorId, slot,notes } = req.body;
 
     const appointment = await Appointment.create({
       patient: req.patient._id,   // patient comes from auth middleware
       doctor: doctorId,
+      notes,
       slot,
       paymentStatus: "paid"
     });
 
     await Patient.findByIdAndUpdate(req.patient._id, {
       $push: { appointments: appointment._id },
-    }).then(console.log("here"));
+    })
 
     res.status(201).json(appointment);  // return appointment
   } catch (error) {

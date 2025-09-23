@@ -25,7 +25,7 @@ app.use(cors({
   credentials: true,
 }));
 
-
+app.get('/',(req,res)=>{res.send('Hello')})
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/patient", require("./routes/patientRoutes"));
 app.use("/api/doctor", require("./routes/doctorRoutes"));

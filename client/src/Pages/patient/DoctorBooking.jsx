@@ -169,10 +169,11 @@ const handlePayment = async () => {
   try {
     //const patientData = JSON.parse(localStorage.getItem("patient"));
     const token = localStorage.getItem("token"); // must be stored after login
-    
+    const notes=doctor.specialty
     const payload = {
       doctorId:2,  
-      slot: selectedTime
+      slot: selectedTime,
+      notes
     };
 
     await api.post("/api/appointment/book", payload, {

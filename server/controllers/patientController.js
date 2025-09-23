@@ -11,10 +11,30 @@ const getProfile = async (req, res) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const patientId = decoded.id; // make sure you stored id in JWT
 
-    const patient = await Patient.findById(patientId);
+    const patient = await Patient.findById(patientId).populate({
+        path: "appointments",
+        match: { status: { $in: ["pending", "confirmed"] } }, // only upcoming
+        populate: {
+          path: "doctor",
+          select: "name specialty avatar",
+        },
+      });
     if (!patient) return res.status(404).json({ message: "Patient not found" });
 
-    res.json(patient);
+        const upcomingAppointments = patient.appointments.map((appt) => ({
+      day: appt.createdAt.toLocaleDateString(), // You might replace with actual appt.date field later
+      time: appt.slot,
+      therapy: appt.notes || "General Therapy",
+      status:appt.status,
+      paymentStatus:appt.paymentStatus,
+      doctor: appt.doctor,
+      image: appt.doctor?.avatar || "https://lh3.googleusercontent.com/aida-public/AB6AXuCUqWf3H5wTZJUI2MuflwPLMpVvd81F8bZR0yrd5R-KdOuAveRz1eRtH7mKWJ9XosC0Fcz7vzBLQZHaRK2yh9j4czhvWq9ji_-JMk_SBjLdyu2hAkw3yBK9UtdJn25mfrfYFB5rIC_5pgNZux0fLHoUvjKoN6HResuiy1ZXVxLIbO5tW-_Z_NvWDbq_SfkuPQreJpkkB4usiZSuEav9Oc1O2r_23ApH90tH7yGQi_l13Z8-6ZW9FQyI4iC3D9JqBZgbJ0ca0ytl2XE",
+    }));
+
+     res.json({
+      ...patient.toObject(),
+      upcomingAppointments,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Failed to get profile" });
