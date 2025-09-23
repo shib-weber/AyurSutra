@@ -18,10 +18,7 @@ const AppointmentSuccess = () => {
 
   return (
     <div className="flex min-h-screen">
-      <Sidebar />
       <div className="flex-1 flex flex-col">
-        <PatientHeader />
-
         <main className="flex-1 flex flex-col items-center justify-center p-8 bg-gray-50">
           <div className="bg-white p-10 rounded-3xl shadow-xl border border-emerald-200 text-center max-w-xl">
             <h1 className="text-4xl font-bold text-emerald-700 mb-4">

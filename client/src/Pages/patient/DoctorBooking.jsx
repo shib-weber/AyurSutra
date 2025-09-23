@@ -183,8 +183,8 @@ const handlePayment = async () => {
       },
     });
 
-    alert("Payment Successful! Appointment Booked ✅");
-    navigate("/patient_dashboard");
+    
+    navigate("/appointment-success");
   } catch (error) {
     console.error("Error booking appointment:", error);
     alert("Failed to book appointment. Please try again.");
