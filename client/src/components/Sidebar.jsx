@@ -25,7 +25,7 @@ const Sidebar = () => {
       {/* Fixed Hamburger Button (always visible on mobile) */}
       <button
         onClick={() => setIsOpen(true)}
-        className="lg:hidden fixed top-0 left-4 z-50 p-2 bg-[#035757] rounded-md text-white shadow-md"
+        className="lg:hidden fixed top-0 left-1 z-50 p-2 bg-[#035757] rounded-md text-white shadow-md"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
