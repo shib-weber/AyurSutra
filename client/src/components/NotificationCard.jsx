@@ -64,7 +64,7 @@ const NotificationCard = ({ type , title, time }) => {
 
   return (
     <li className={`py-3 mb-4 flex items-start gap-4 ${bg} text-black transition rounded-lg px-3`}>
-      <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center text-black rounded-full">
+      <div className="flex-shrink-0 overflow-y-auto w-12 h-12 flex items-center justify-center text-black rounded-full">
         {icons[type] || icons.general}
       </div>
       <div className="flex-1">
