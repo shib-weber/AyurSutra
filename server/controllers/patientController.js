@@ -1,6 +1,64 @@
 const Patient = require("../models/Patient");
 const jwt = require("jsonwebtoken");
 const Notification = require("../models/Notification");
+const feedbackMappings = {
+  mood: { "😀": 5, "🙂": 4, "😐": 3, "☹️": 2, "😢": 1 },
+  digestion: { Good: 3, Average: 2, Poor: 1 },
+  appetite: { Strong: 3, Normal: 2, Low: 1 },
+  bowel: { Regular: 3, Irregular: 2, Constipation: 1, Loose: 1 },
+  health: { Excellent: 4, Good: 3, Fair: 2, Poor: 1 },
+  pain: { None: 4, Mild: 3, Moderate: 2, Severe: 1 },
+  sleep: { Restful: 3, Disturbed: 2, Insufficient: 1 },
+  energy: { High: 3, Moderate: 2, Low: 1 },
+  hydration: { Adequate: 3, Low: 2, Excessive: 1 },
+  stress: { None: 4, Mild: 3, Moderate: 2, Severe: 1 },
+  activity: { Active: 3, Moderate: 2, Sedentary: 1 },
+};
+
+const processFeedbacksForChart = (feedbacks) => {
+  // Step 1: Map feedbacks to numeric values and group by day
+  const grouped = {};
+
+  feedbacks.forEach((f) => {
+    const date = new Date(f.createdAt).toLocaleDateString();
+
+    if (!grouped[date]) {
+      grouped[date] = [];
+    }
+
+    grouped[date].push({
+      mood: feedbackMappings.mood[f.mood] || null,
+      digestion: feedbackMappings.digestion[f.digestion] || null,
+      appetite: feedbackMappings.appetite[f.appetite] || null,
+      bowel: feedbackMappings.bowel[f.bowel] || null,
+      health: feedbackMappings.health[f.health] || null,
+      pain: feedbackMappings.pain[f.pain] || null,
+      sleep: feedbackMappings.sleep[f.sleep] || null,
+      energy: feedbackMappings.energy[f.energy] || null,
+      hydration: feedbackMappings.hydration[f.hydration] || null,
+      stress: feedbackMappings.stress[f.stress] || null,
+      activity: feedbackMappings.activity[f.activity] || null,
+    });
+  });
+
+  // Step 2: Calculate averages per day
+  const result = Object.entries(grouped).map(([date, dayFeedbacks]) => {
+    const avg = {};
+
+    const keys = Object.keys(dayFeedbacks[0]);
+
+    keys.forEach((key) => {
+      const values = dayFeedbacks.map((f) => f[key]).filter((v) => v !== null && v !== undefined);
+      avg[key] = values.length > 0 ? values.reduce((a, b) => a + b, 0) / values.length : null;
+    });
+
+    return { date, ...avg };
+  });
+
+  // Sort by date ascending
+  return result.sort((a, b) => new Date(a.date) - new Date(b.date));
+};
+
 
 const getProfile = async (req, res) => {
   try {
@@ -19,7 +77,11 @@ const getProfile = async (req, res) => {
       .populate({
         path: "notifications",
         options: { sort: { createdAt: -1 } }, // latest notifications first
-      });
+      })
+      .populate({
+        path:"feedbacks",
+        options:{sort: { createdAt: -1 } }
+      })
 
     if (!patient) return res.status(404).json({ message: "Patient not found" });
 
@@ -41,10 +103,13 @@ const getProfile = async (req, res) => {
       time: new Date(notif.createdAt).toLocaleString(),
     }));
 
+    const feedbacksForChart = processFeedbacksForChart(patient.feedbacks);
+
     res.json({
       ...patient.toObject(),
       upcomingAppointments,
       notifications,
+      feedbacks: feedbacksForChart,
     });
   } catch (error) {
     console.error(error);

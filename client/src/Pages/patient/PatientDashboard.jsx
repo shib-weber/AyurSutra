@@ -10,6 +10,7 @@ import HealthChart from "../../components/HealthChart";
 import { useNavigate } from "react-router-dom";
 import api from "../../api/axiosInstance"
 import Preloader from "../../components/Preloader";
+import FeedbackForm from "../../components/FeedbackForm";
 
 
 const PatientDashboard = () => {
@@ -45,10 +46,7 @@ const PatientDashboard = () => {
   if (loading) return <Preloader></Preloader>;
   if (!patient) return <p className="text-center mt-20">No patient data found</p>;
 
-  const handleFeedbackSubmit = () => {
-    alert("Feedback submitted successfully!");
-    // TODO: send to backend
-  };
+
 
   return (
     <div className="font-display bg-white flex min-h-screen">
@@ -123,26 +121,15 @@ const PatientDashboard = () => {
 
     {/* Health Status / Daily Health Progress */}
     <div className="order-3 xl:order-3">
-      <HealthChart data={patient.dailyProgress} />
+      <HealthChart data={patient.feedbacks} />
     </div>
 
     {/* Feedback */}
-    <div className="order-4 xl:order-4 bg-background-light dark:bg-background-dark p-6 rounded-xl shadow-sm border border-primary/10 dark:border-primary/20 h-[200px] flex flex-col justify-between">
-      <h3 className="text-xl font-bold mb-4">Feedback</h3>
-      <textarea
-        className="form-textarea w-full rounded-lg border-primary/30 dark:border-primary/40 bg-background-light dark:bg-background-dark focus:ring-primary focus:border-primary placeholder-gray-400 dark:placeholder-gray-500 flex-1"
-        placeholder="Share your feedback about the therapy"
-        rows="4"
-      ></textarea>
-      <div className="flex justify-end mt-4">
-        <button
-          onClick={handleFeedbackSubmit}
-          className="bg-[#007f80] text-white font-bold py-2 px-6 rounded-lg hover:bg-primary/90 transition-colors"
-        >
-          Submit Feedback
-        </button>
-      </div>
-    </div>
+{/* Feedback */}
+<div className="order-4 xl:order-4">
+  <FeedbackForm patientId={patient._id} />
+</div>
+
   </div>
 
   {/* RIGHT COLUMN */}

@@ -34,6 +34,7 @@ complete:{
   // relationships
   notifications: [{ type: mongoose.Schema.Types.ObjectId, ref: "Notification" }],
   appointments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Appointment" }],
+  feedbacks:[{type:mongoose.Schema.Types.ObjectId, ref: "Feedback"}],
 
   createdAt: { type: Date, default: Date.now },
 });
