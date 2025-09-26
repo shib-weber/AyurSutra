@@ -2,8 +2,9 @@
 import React from "react";
 import Header from "../../components/PatientHeader";
 import Sidebar from "../../components/Sidebar";
-
+import { useNavigate } from "react-router-dom";
 const PatientHome = () => {
+  const navigate = useNavigate()
   return (
     <div className="flex min-h-screen w-full  bg-gray-50">
       {/* Sidebar */}
@@ -11,7 +12,7 @@ const PatientHome = () => {
 
 
       {/* Main */}
-      <main className="flex-grow mt-2 mr-2">
+      <main className="flex-grow ml-2 mb-2 mt-2 mr-2">
         {/* Hero Section */}
         <section
           className="relative flex min-h-[60vh] items-center justify-center bg-cover bg-center px-4 py-16 text-white sm:py-20"
@@ -29,7 +30,7 @@ const PatientHome = () => {
               is dedicated to guiding you on your journey to optimal health and
               well-being.
             </p>
-            <button className="mt-8 rounded-lg bg-[#007f80] px-6 py-3 text-base font-bold text-white transition-transform hover:scale-105 sm:px-8 sm:text-lg">
+            <button onClick={()=>{navigate('/appointment')}} className="mt-8 rounded-lg bg-[#007f80] px-6 py-3 text-base font-bold text-white transition-transform hover:scale-105 sm:px-8 sm:text-lg">
               Book Now
             </button>
           </div>

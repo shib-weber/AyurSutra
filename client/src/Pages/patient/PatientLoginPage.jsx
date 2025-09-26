@@ -58,6 +58,7 @@ const PatientLoginPage = () => {
   const handleGoogleLogin = () => {
     console.log("Google Login clicked");
     // Later integrate Google OAuth
+    navigate('/maintainance')
   };
 
   return (

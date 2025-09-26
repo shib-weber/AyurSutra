@@ -76,6 +76,7 @@ const PatientRegistrationPage = () => {
   // Google signup handler (placeholder)
   const handleGoogleSignUp = () => {
     console.log("Google Sign-Up clicked");
+    navigate('/maintainance')
     // TODO: integrate Google OAuth later
   };
 

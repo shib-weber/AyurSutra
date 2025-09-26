@@ -15,6 +15,7 @@ import PatientProfile from "./Pages/patient/PatientProfile";
 import PatientHome from "./Pages/patient/PatientHome";
 import PatientAppointment from "./Pages/patient/PatientAppointment";
 import DoctorBooking from "./Pages/patient/DoctorBooking";
+import MaintenancePage from "./Pages/general/MaintenancePage";
 
 const AppContent = () => {
   const location = useLocation();
@@ -38,6 +39,7 @@ const AppContent = () => {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
+      <Route path="/maintainance" element={<MaintenancePage />} />
       <Route path="/register" element={<PatientLoginPage />} />
       <Route path="/new_register" element={<PatientRegistrationPage />} />
       <Route path="/dashboard" element={<Dashboard />} />

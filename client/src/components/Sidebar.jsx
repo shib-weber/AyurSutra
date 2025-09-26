@@ -14,10 +14,10 @@ const Sidebar = () => {
     { icon: "👤", label: "Profile", href: "/patient_profile" },
     { icon: "🏠", label: "Homepage", href: "/patient_home" },
     { icon: "📊", label: "Dashboard", href: "/patient_dashboard" },
-    { icon: "⚙️", label: "Settings", href: "/settings" },
     { icon: "📅", label: "Appointment", href: "/appointment" },
-    { icon: "📞", label: "Contact Us", href: "/contact" },
-    { icon: "🚨", label: "Emergency", href: "/emergency" },
+    { icon: "⚙️", label: "Settings", href: "/maintainance" },
+    { icon: "📞", label: "Contact Us", href: "/maintainance" },
+    { icon: "🚨", label: "Emergency", href: "/maintainance" },
   ];
 
   return (

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import API from "../api/axiosInstance";
+import {useNavigate} from 'react-router-dom'
 
 const FeedbackForm = ({ patientId }) => {
   const [form, setForm] = useState({
@@ -17,6 +18,7 @@ const FeedbackForm = ({ patientId }) => {
     menstrual: "",
     notes: "",
   });
+  const navigate=useNavigate()
 
   const handleChange = (field, value) => {
     setForm({ ...form, [field]: value });
@@ -48,6 +50,7 @@ const handleSubmit = async () => {
   try {
     await API.post("/api/feedback", { patientId, ...form });
     alert("✅ Feedback submitted successfully!");
+    navigate('/patient_dashboard')
     setForm({
       mood: "",
       digestion: "",
