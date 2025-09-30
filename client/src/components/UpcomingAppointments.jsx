@@ -1,6 +1,8 @@
 import React from "react";
+import {useNavigate} from 'react-router-dom'
 
 const UpcomingAppointments = ({ appointments }) => {
+  const navigate = useNavigate()
   if (!appointments || !appointments.length)
     return (
       <div className="bg-[var(--card)] p-6 rounded-lg shadow-sm border border-[var(--border)] mb-8">
@@ -9,8 +11,11 @@ const UpcomingAppointments = ({ appointments }) => {
       </div>
     );
 
+    
+    
   const handleCancel = (id) => {
     console.log("Cancel appointment:", id);
+    navigate('/maintainance')
     // Call backend to cancel appointment
   };
 
